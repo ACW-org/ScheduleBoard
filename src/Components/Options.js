@@ -1,5 +1,5 @@
 import fakeBoardData from "../Data/Item";
-
+import tlGroups from "../Data/Group";
 const getStartDate = () => {
   let startArr = [];
   fakeBoardData.forEach((item) => {
@@ -18,7 +18,8 @@ const getEndDate = () => {
 const GroupTemplate = (group) => {
   return (
     <div>
-      <label>{group.content}</label>
+      <span>{group.content}</span>
+      <span>{group.department}</span>
     </div>
   );
 };
@@ -32,25 +33,43 @@ export const options = {
   end: getEndDate(),
   zoomKey: "ctrlKey",
   editable: true,
-  //   groupTemplate: function (group, element) {
-  //     if (!group || !group.content) {
-  //       return;
-  //     }
-  //     return <GroupTemplate group={group} />;
-  //   },
-  onAdd: function (item, callback) {
-    console.log(
-      "Add item",
-      "Enter text content for new item:",
-      item.content,
-      function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted new item
-        } else {
-          callback(null); // cancel item creation
-        }
-      }
-    );
+  groupEditable: false,
+  groupOrder: function (a, b) {
+    return a.id - b.id;
+  },
+  groupOrderSwap: function (a, b, groups) {
+    var v = a.id;
+    a.id = b.id;
+    b.id = v;
+  },
+  groupTemplate: function (group) {
+    var container = document.createElement("div");
+
+    var elem = document.createElement("img");
+    elem.setAttribute("src", "http://localhost:3000/" + group.img);
+    elem.setAttribute("height", "30");
+    elem.setAttribute("width", "30");
+    elem.setAttribute("style", "border-radius:50%");
+    container.insertAdjacentElement("afterBegin", elem);
+
+    var department = document.createElement("span");
+    department.innerHTML = group.department + " ";
+    container.insertAdjacentElement("afterBegin", department);
+
+    var br = document.createElement("br");
+    container.insertAdjacentElement("afterBegin", br);
+
+    var content = document.createElement("span");
+    content.innerHTML = group.content + " ";
+    container.insertAdjacentElement("afterBegin", content);
+
+    return container;
+  },
+  onDropObjectOnItem: function (objectData, item, callback) {
+    if (item.content) {
+      callback(item); // send back adjusted item
+    } else {
+      return null; // cancel updating the item
+    }
   },
 };

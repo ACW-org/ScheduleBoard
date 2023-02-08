@@ -2,10 +2,11 @@ import moment from "moment";
 const fakeBoardData = [
   {
     id: 1,
-    content: "Task 1",
     editable: true,
     start: moment().add(2, "hour"),
     end: moment().add(4, "hour"),
+    duration: moment().add(4, "hour").diff(moment().add(2, "hour")).toString(),
+    content: `Task 1`, //case
     group: 1,
     status: "Open",
   },

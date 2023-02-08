@@ -1,0 +1,29 @@
+.timeline .vis-time-axis .grid.vis-odd {
+  background: #eee;
+}
+
+/* gray background in weekends, white text color */
+.vis-time-axis .vis-grid.vis-saturday,
+.vis-time-axis .vis-grid.vis-sunday {
+  background: gray;
+}
+.vis-time-axis .vis-text.vis-saturday,
+.vis-time-axis .vis-text.vis-sunday {
+  color: #eee;
+}
+.vis-item {
+  background: transparent;
+}
+
+.Open {
+  background-color: rgb(233, 218, 17);
+}
+.Accept {
+  background-color: #6ce;
+}
+.In-Progress {
+  background-color: #283;
+}
+.Completed {
+  background-color: #cb4;
+}
