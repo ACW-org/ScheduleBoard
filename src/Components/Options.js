@@ -29,11 +29,13 @@ export const options = {
   orientation: "top",
   type: "range",
   showTooltips: true,
+  showCurrentTime: true,
   start: getStartDate(),
   end: getEndDate(),
   zoomKey: "ctrlKey",
   editable: true,
   groupEditable: false,
+  // tooltip: {followMouse: true},
   groupOrder: function (a, b) {
     return a.id - b.id;
   },
@@ -66,10 +68,11 @@ export const options = {
     return container;
   },
   onDropObjectOnItem: function (objectData, item, callback) {
-    if (item.content) {
-      callback(item); // send back adjusted item
-    } else {
-      return null; // cancel updating the item
+    console.log(objectData, item);
+    if (!item) {
+      return;
     }
+    // console.log('dropped object with content: "' + objectData.content + '" to item: "' + item.content + '"');
+    callback(objectData);
   },
 };
