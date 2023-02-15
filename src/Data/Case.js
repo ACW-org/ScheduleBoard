@@ -7,7 +7,7 @@ const CaseItem = [
     caseresource: "",
     start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"),
     duration: 60,
-    status: "open",
+    status: "Open",
   },
   {
     id: 5,
@@ -16,9 +16,9 @@ const CaseItem = [
     caseresource: "",
     start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"),
     duration: 60,
-    status: "open",
+    status: "Open",
   },
-  { id: 6, title: "更換 HAN-71710670", caseno: "CAS-220805-01090", caseresource: "", start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"), duration: 60, status: "open" },
+  { id: 6, title: "更換 HAN-71710670", caseno: "CAS-220805-01090", caseresource: "", start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"), duration: 60, status: "Open" },
 ];
 
 export default CaseItem;

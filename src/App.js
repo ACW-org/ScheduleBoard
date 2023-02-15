@@ -5,11 +5,11 @@ import moment from "moment";
 // import { options } from "./Components/Options";
 import tlGroups from "./Data/Group";
 import fakeBoardData from "./Data/Item";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import CaseItem from "./Data/Case";
 
 function App() {
-  const [boardItems, setBoardItems] = useState();
+  const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
   const [dragItem, setDragItem] = useState({});
   // const [optionSetup, setOptionSetup] = useState(options);
@@ -38,11 +38,13 @@ function App() {
     setBoardItems(items);
   };
   useEffect(() => {
+    getData();
     convert();
   }, []);
+
   useEffect(() => {
-    getData();
-  }, []);
+    console.log(boardItems);
+  }, [boardItems]);
 
   const getStartDate = () => {
     let startArr = [];
@@ -117,6 +119,8 @@ function App() {
         if (value) {
           //tableItems.filter((t) => t.id === value.id)[0]
           // console.log(1.5, tableItems.filter((t) => t.id == value.id)[0]);
+          // const newList = [...boardItems, value];
+          updateBoards(value);
           return value;
           //callback();
         }
@@ -132,13 +136,16 @@ function App() {
       type: "range",
       content: caseObject.title,
       target: "item",
-      // start: "",
-      // end: "",
     };
 
     event.dataTransfer.setData("text", JSON.stringify(item));
+  }
 
-    console.log(event.dataTransfer);
+  function updateBoards(boardObject) {
+    const newBoard = [...boardItems]; // spreading operator which doesn't mutate the array and returns new array
+    newBoard.push(boardObject);
+    console.log("new", newBoard);
+    setBoardItems(newBoard);
   }
 
   function updateBoardItems(data, callback) {
@@ -155,19 +162,12 @@ function App() {
       end: moment(selected.start, "DD/MM/YYYY HH:mm:ss").add(selected.duration, "minute"),
       status: selected.status,
       className: s,
-      type: "range",
     };
     console.log(3, transform);
     const res = callback(transform);
-    setDragItem(res);
-    let newBoard = boardItems.concat(res);
-    console.log(newBoard);
-    setBoardItems(newBoard);
     setTableItems(tableItems.filter((t) => t.id != selected.id));
-    // const newl = [...boardItems, bi];
-    // setBoardItems(newl);
+    console.log(boardItems);
   }
-
   const customTimes = {
     marker: moment(),
   };
