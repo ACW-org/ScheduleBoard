@@ -2,23 +2,24 @@ import logo from "./logo.svg";
 import Timeline from "react-visjs-timeline";
 import "./App.css";
 import moment from "moment";
-import { options } from "./Components/Options";
+// import { options } from "./Components/Options";
 import tlGroups from "./Data/Group";
 import fakeBoardData from "./Data/Item";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import CaseItem from "./Data/Case";
 
 function App() {
-  const [boardItems, setBoardItems] = useState();
+  const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
-  const [optionSetup, setOptionSetup] = useState(options);
+  const [dragItem, setDragItem] = useState({});
+  // const [optionSetup, setOptionSetup] = useState(options);
   const [tableItems, setTableItems] = useState(CaseItem);
+  const status = ["Open", "Accept", "In-Progress", "Cancelled", "Complete"];
   const getData = () => {
     setBoardGroups(tlGroups);
     // setBoardItems(fakeBoardData);
   };
   const convert = () => {
-    const status = ["Open", "Accept", "In-Progress", "Cancelled", "Complete"];
     const items = [];
     fakeBoardData.forEach((d) => {
       const s = status.filter((s) => s == d.status)[0];
@@ -37,25 +38,136 @@ function App() {
     setBoardItems(items);
   };
   useEffect(() => {
-    convert();
     getData();
+    convert();
   }, []);
 
+  useEffect(() => {
+    console.log(boardItems);
+  }, [boardItems]);
+
+  const getStartDate = () => {
+    let startArr = [];
+    fakeBoardData.forEach((item) => {
+      startArr.push(item.start);
+    });
+    return Math.min(...startArr);
+  };
+
+  const getEndDate = () => {
+    let startArr = [];
+    fakeBoardData.forEach((item) => {
+      startArr.push(item.end);
+    });
+    return Math.max(...startArr);
+  };
+  const GroupTemplate = (group) => {
+    return (
+      <div>
+        <span>{group.content}</span>
+        <span>{group.department}</span>
+      </div>
+    );
+  };
+  const options = {
+    width: "100%",
+    stack: true,
+    orientation: "top",
+    type: "range",
+    showTooltips: true,
+    showCurrentTime: true,
+    start: getStartDate(),
+    end: getEndDate(),
+    zoomKey: "ctrlKey",
+    editable: true,
+    groupEditable: false,
+    // tooltip: {followMouse: true},
+    groupOrder: function (a, b) {
+      return a.id - b.id;
+    },
+    groupOrderSwap: function (a, b, groups) {
+      var v = a.id;
+      a.id = b.id;
+      b.id = v;
+    },
+    groupTemplate: function (group) {
+      var container = document.createElement("div");
+
+      var elem = document.createElement("img");
+      elem.setAttribute("src", "http://localhost:3000/" + group.img);
+      elem.setAttribute("height", "30");
+      elem.setAttribute("width", "30");
+      elem.setAttribute("style", "border-radius:50%");
+      container.insertAdjacentElement("afterBegin", elem);
+
+      var department = document.createElement("span");
+      department.innerHTML = group.department + " ";
+      container.insertAdjacentElement("afterBegin", department);
+
+      var br = document.createElement("br");
+      container.insertAdjacentElement("afterBegin", br);
+
+      var content = document.createElement("span");
+      content.innerHTML = group.content + " ";
+      container.insertAdjacentElement("afterBegin", content);
+
+      return container;
+    },
+    onDropObjectOnItem: function (item, callback) {
+      console.log(1, item);
+      updateBoardItems(item, function (value) {
+        if (value) {
+          //tableItems.filter((t) => t.id === value.id)[0]
+          // console.log(1.5, tableItems.filter((t) => t.id == value.id)[0]);
+          // const newList = [...boardItems, value];
+          updateBoards(value);
+          return value;
+          //callback();
+        }
+      });
+    },
+  };
+
   function handleDragStart(event) {
-    var dragSrcEl = event.target;
     event.dataTransfer.effectAllowed = "move";
     const caseObject = CaseItem.filter((c) => c.id.toString() == event.target.innerHTML)[0];
     var item = {
       id: caseObject.id,
       type: "range",
       content: caseObject.title,
-      start: "",
-      end: "",
+      target: "item",
     };
+
     event.dataTransfer.setData("text", JSON.stringify(item));
-    // setBoardItems([...boardItems, item]);
   }
 
+  function updateBoards(boardObject) {
+    const newBoard = [...boardItems]; // spreading operator which doesn't mutate the array and returns new array
+    newBoard.push(boardObject);
+    console.log("new", newBoard);
+    setBoardItems(newBoard);
+  }
+
+  function updateBoardItems(data, callback) {
+    const selected = tableItems.filter((t) => t.id == data.id)[0];
+    console.log(2, selected);
+    const s = status.filter((s) => s == selected.status)[0];
+
+    const transform = {
+      id: selected.id,
+      content: selected.title,
+      duration: selected.duration.toString(),
+      editable: true,
+      start: moment(selected.start, "DD/MM/YYYY HH:mm:ss"),
+      end: moment(selected.start, "DD/MM/YYYY HH:mm:ss").add(selected.duration, "minute"),
+      status: selected.status,
+      className: s,
+    };
+    console.log(3, transform);
+    const res = callback(transform);
+    setTableItems(tableItems.filter((t) => t.id != selected.id));
+    console.log(boardItems);
+  }
   const customTimes = {
     marker: moment(),
   };
@@ -66,6 +178,7 @@ function App() {
   }
 
   const T = ({ data }) => {
+
     return (         
 
       <table style={{ fontSize: "15px",                     

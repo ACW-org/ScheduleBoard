@@ -1186,6 +1186,13 @@
   "resolved" "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.1.1.tgz"
   "version" "2.1.1"
 
+"@egjs/hammerjs@^2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
+  integrity sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==
+  dependencies:
+    "@types/hammerjs" "^2.0.36"
+
 "@emotion/is-prop-valid@^1.1.0":
   "integrity" "sha512-3aDpDprjM0AwaxGE09bOPkNxHpBd+kA6jty3RnaEXdweX1DF1U3VQpPYb0g1IStAuK7SVQ1cy+bNBBKp4W3Fjg=="
   "resolved" "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-1.2.0.tgz"
@@ -1972,6 +1979,11 @@
   "version" "4.1.6"
   dependencies:
     "@types/node" "*"
+
+"@types/hammerjs@^2.0.36":
+  version "2.0.41"
+  resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.41.tgz#f6ecf57d1b12d2befcce00e928a6a097c22980aa"
+  integrity sha512-ewXv/ceBaJprikMcxCmWU1FKyMAQ2X7a9Gtmzw8fcg2kIePI1crERDM818W+XYrxqdBBOdlf2rm137bU+BltCA==
 
 "@types/html-minifier-terser@^6.0.0":
   "integrity" "sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg=="
@@ -3251,10 +3263,22 @@
   "resolved" "https://registry.npmjs.org/commondir/-/commondir-1.0.1.tgz"
   "version" "1.0.1"
 
+<<<<<<< HEAD
 "compressible@~2.0.16":
   "integrity" "sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg=="
   "resolved" "https://registry.npmjs.org/compressible/-/compressible-2.0.18.tgz"
   "version" "2.0.18"
+=======
+component-emitter@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
+  integrity sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
+
+compressible@~2.0.16:
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.18.tgz#af53cca6b070d4c3c0750fbd77286a6d7cc46fba"
+  integrity sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==
+>>>>>>> a49a3bcce80a52eda30de5a1cf21e8fe7aa8ffa0
   dependencies:
     "mime-db" ">= 1.43.0 < 2"
 
@@ -6175,10 +6199,22 @@
   "resolved" "https://registry.npmjs.org/keycharm/-/keycharm-0.2.0.tgz"
   "version" "0.2.0"
 
+<<<<<<< HEAD
 "kind-of@^6.0.2":
   "integrity" "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw=="
   "resolved" "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz"
   "version" "6.0.3"
+=======
+keycharm@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/keycharm/-/keycharm-0.3.1.tgz#1de258425454752b95c4d8a6cab9ec83218670de"
+  integrity sha512-zn47Ti4FJT9zdF+YBBLWJsfKF/fYQHkrYlBeB5Ez5e2PjW7SoIxr43yehAne2HruulIoid4NKZZxO0dHBygCtQ==
+
+kind-of@^6.0.2:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
+  integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
+>>>>>>> a49a3bcce80a52eda30de5a1cf21e8fe7aa8ffa0
 
 "kleur@^3.0.3":
   "integrity" "sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w=="
@@ -7546,10 +7582,17 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
+<<<<<<< HEAD
 "prop-types@^15.0 || ^16.0", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
+=======
+propagating-hammerjs@^1.4.6, propagating-hammerjs@^1.4.7:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/propagating-hammerjs/-/propagating-hammerjs-1.5.0.tgz#223d58465489b64879fb0cef2c99ba92b294c239"
+  integrity sha512-3PUXWmomwutoZfydC+lJwK1bKCh6sK6jZGB31RUX6+4EXzsbkDZrK4/sVR7gBrvJaEIwpTVyxQUAd29FKkmVdw==
+>>>>>>> a49a3bcce80a52eda30de5a1cf21e8fe7aa8ffa0
   dependencies:
     "loose-envify" "^1.4.0"
     "object-assign" "^4.1.1"
@@ -7794,10 +7837,31 @@
   "resolved" "https://registry.npmjs.org/react-table/-/react-table-7.8.0.tgz"
   "version" "7.8.0"
 
+<<<<<<< HEAD
 "react-visjs-timeline@1.5":
   "integrity" "sha512-axAwHqo9X6Fqb5dZjhW2uAEK/DfWR6FpZS+sKAQhl775ebSjAc0dEbYxkMNyitIjhuaBKwh/qcg/4AinAB8fqw=="
   "resolved" "https://registry.npmjs.org/react-visjs-timeline/-/react-visjs-timeline-1.5.0.tgz"
   "version" "1.5.0"
+=======
+react-vis-timeline-2@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/react-vis-timeline-2/-/react-vis-timeline-2-2.1.6.tgz#4b9a8d5dc1cde31ee7b084952531477f154d9c09"
+  integrity sha512-/RggBBK3E89E1pl4DPe3lEZ+zR3cUZWKpO+/i9vtgv/XiPgSp/QiEY1s05F0AvLjHeYUVgks3XqL1pQxAFossQ==
+  dependencies:
+    "@egjs/hammerjs" "^2.0.17"
+    component-emitter "^1.3.0"
+    keycharm "^0.3.1"
+    propagating-hammerjs "^1.4.7"
+    uuid "^7.0.0"
+    vis-data "^7.1.0"
+    vis-timeline "^7.4.2"
+    vis-util "^4.3.4"
+
+react-visjs-timeline@1.5:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-visjs-timeline/-/react-visjs-timeline-1.5.0.tgz#4f6769edc90c29494a2561791be7576d11e6eb00"
+  integrity sha512-axAwHqo9X6Fqb5dZjhW2uAEK/DfWR6FpZS+sKAQhl775ebSjAc0dEbYxkMNyitIjhuaBKwh/qcg/4AinAB8fqw==
+>>>>>>> a49a3bcce80a52eda30de5a1cf21e8fe7aa8ffa0
   dependencies:
     "lodash" "^4.17.4"
 
@@ -9049,10 +9113,22 @@
   "resolved" "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz"
   "version" "1.0.1"
 
+<<<<<<< HEAD
 "uuid@^8.3.2":
   "integrity" "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   "version" "8.3.2"
+=======
+uuid@^7.0.0:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
+  integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+>>>>>>> a49a3bcce80a52eda30de5a1cf21e8fe7aa8ffa0
 
 "v8-to-istanbul@^8.1.0":
   "integrity" "sha512-FGtKtv3xIpR6BYhvgH8MI/y78oT7d8Au3ww4QIxymrCtZEh5b8gCw2siywE+puhEmuWKDtmfrvF5UlB298ut3w=="
@@ -9068,10 +9144,32 @@
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
 
+<<<<<<< HEAD
 "vis@^4.20.1", "vis@^4.21.0":
   "integrity" "sha512-jonDXTGm2mFU/X6Kg9pvkZEQtXh2J6+NlDJD1tDP7TDCFy+qNeKlsTcXKQtv4nAtUIiKo6sphCt4kbRlEKw75A=="
   "resolved" "https://registry.npmjs.org/vis/-/vis-4.21.0.tgz"
   "version" "4.21.0"
+=======
+vis-data@^7.1.0, vis-data@^7.1.4:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-7.1.4.tgz#90e5e796a79e1901de14c0808fb32a1a0735c1dc"
+  integrity sha512-usy+ePX1XnArNvJ5BavQod7YRuGQE1pjFl+pu7IS6rCom2EBoG0o1ZzCqf3l5US6MW51kYkLR+efxRbnjxNl7w==
+
+vis-timeline@^7.4.2:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/vis-timeline/-/vis-timeline-7.7.0.tgz#50c13072b77d7b8a48029fccb3077be7119c614b"
+  integrity sha512-et5xobQTEp7i8lqcEjgMWoGE4s4qn+2VtEJ35uRZiL5Y3qRzi84bCTkUKAjOM/HTzVFiLTWET+DZZi1iHYriuA==
+
+vis-util@^4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/vis-util/-/vis-util-4.3.4.tgz#02319fbd909f82782b96a36d1224f1beea67f8b2"
+  integrity sha512-hJIZNrwf4ML7FYjs+m+zjJfaNvhjk3/1hbMdQZVnwwpOFJS/8dMG8rdbOHXcKoIEM6U5VOh3HNpaDXxGkOZGpw==
+
+vis@^4.21.0:
+  version "4.21.0"
+  resolved "https://registry.yarnpkg.com/vis/-/vis-4.21.0.tgz#dd71638bff7f6495d00bc9f40c253526133ded6b"
+  integrity sha512-jonDXTGm2mFU/X6Kg9pvkZEQtXh2J6+NlDJD1tDP7TDCFy+qNeKlsTcXKQtv4nAtUIiKo6sphCt4kbRlEKw75A==
+>>>>>>> a49a3bcce80a52eda30de5a1cf21e8fe7aa8ffa0
   dependencies:
     "emitter-component" "^1.1.1"
     "hammerjs" "^2.0.8"
