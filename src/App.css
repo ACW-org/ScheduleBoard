@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -41,15 +43,35 @@
   background: transparent;
 }
 
+
 .Open {
-  background-color: rgb(233, 218, 17);
+  background-color: rgb(255, 244, 173);
+  text-align: left;
+  font-size: 12px;
+ 
 }
+
 .Accept {
-  background-color: rgb(255, 192, 0);
+  background-color: rgb(233, 211, 73);
 }
 .In-Progress {
-  background-color: rgb(112, 173, 71);
+  background-color: rgb(255, 180, 180);
+  text-align: left;
+  font-size: 12px;;
 }
 .Complete {
-  background-color: rgb(91, 155, 213);
+  background-color: rgb(142, 201, 255);
+  text-align: left;
+  font-size: 12px;
 }
+
+.vis-label {text-align: left; font-size: 14px; background-color:#fbfbfb; }
+
+
+img { height: 35px;       
+      width: 55px;
+      padding: 5px;
+      margin-right: px;     
+      border-radius:0ch;      
+      height: auto;
+    }
