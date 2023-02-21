@@ -11,7 +11,10 @@ import CaseItem from "./Data/Case";
 function App() {
   const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
-  const [dragItem, setDragItem] = useState({});
+  const [dragItem, setDragItem] = useState("");
+  const [drag, setDrag] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
   // const [optionSetup, setOptionSetup] = useState(options);
   const [tableItems, setTableItems] = useState(CaseItem);
   const status = ["Open", "Accept", "In-Progress", "Cancelled", "Complete"];
@@ -41,10 +44,6 @@ function App() {
     getData();
     convert();
   }, []);
-
-  useEffect(() => {
-    console.log(boardItems);
-  }, [boardItems]);
 
   const getStartDate = () => {
     let startArr = [];
@@ -113,61 +112,67 @@ function App() {
 
       return container;
     },
-    onDropObjectOnItem: function (item, callback) {
-      console.log(1, item);
-      updateBoardItems(item, function (value) {
-        if (value) {
-          //tableItems.filter((t) => t.id === value.id)[0]
-          // console.log(1.5, tableItems.filter((t) => t.id == value.id)[0]);
-          // const newList = [...boardItems, value];
-          updateBoards(value);
-          return value;
-          //callback();
-        }
+    onRemove: function (item, callback) {
+      handleRemove(item, function () {
+        callback(item);
       });
+    },
+    onDropObjectOnItem: function (objectData, item, callback) {
+      console.log(1, item);
+      if (!item) {
+        return;
+      }
+      alert('dropped object with content: "' + objectData.content + '" to item: "' + item.content + '"');
     },
   };
 
-  function handleDragStart(event) {
+  // function handleDragStart(event) {
+  //   //console.log(event.dataTransfer);
+  //   event.dataTransfer.effectAllowed = "move";
+  //   const caseObject = CaseItem.filter((c) => c.id.toString() == event.target.id)[0];
+  //   console.log(event.target.id);
+  //   var item = {
+  //     id: caseObject.id,
+  //     type: "range",
+  //     content: caseObject.title,
+  //     target: "item",
+  //   };
+
+  //   event.dataTransfer.setData("text", JSON.stringify(item));
+  //   // event.originalEvent.dataTransfer.files("text", JSON.stringify(item));
+  // }
+
+  function handleRemove(item, callback) {
+    console.log("triggered delete", item);
+    const idx = tableItems.filter((item) => item.caseno === dragItem)[0];
+    const tableDom = document.getElementById(`row-${idx.id}`);
+    tableDom.style.display = "";
+    callback();
+  }
+
+  async function handleDragStart(event) {
+    console.log("drag start trigger");
     event.dataTransfer.effectAllowed = "move";
-    const caseObject = CaseItem.filter((c) => c.id.toString() == event.target.innerHTML)[0];
+    var caseName = event.target.innerHTML;
+    const caseObject = tableItems.filter((obj) => obj.title === caseName)[0];
     var item = {
-      id: caseObject.id,
-      type: "range",
-      content: caseObject.title,
-      target: "item",
-    };
-
-    event.dataTransfer.setData("text", JSON.stringify(item));
-  }
-
-  function updateBoards(boardObject) {
-    const newBoard = [...boardItems]; // spreading operator which doesn't mutate the array and returns new array
-    newBoard.push(boardObject);
-    console.log("new", newBoard);
-    setBoardItems(newBoard);
-  }
-
-  function updateBoardItems(data, callback) {
-    const selected = tableItems.filter((t) => t.id == data.id)[0];
-    console.log(2, selected);
-    const s = status.filter((s) => s == selected.status)[0];
-
-    const transform = {
-      id: selected.id,
-      content: selected.title,
-      duration: selected.duration.toString(),
+      id: new Date().toISOString(),
       editable: true,
-      start: moment(selected.start, "DD/MM/YYYY HH:mm:ss"),
-      end: moment(selected.start, "DD/MM/YYYY HH:mm:ss").add(selected.duration, "minute"),
-      status: selected.status,
-      className: s,
+      type: "range",
+      content: caseName,
+      status: "open",
     };
-    console.log(3, transform);
-    const res = callback(transform);
-    setTableItems(tableItems.filter((t) => t.id != selected.id));
-    console.log(boardItems);
+    event.dataTransfer.setData("text", JSON.stringify(item));
+    setDragItem(caseObject.caseno);
+    event.target.addEventListener("dragend", handleDragEnd.bind(event), false);
   }
+
+  async function handleDragEnd(event) {
+    const idx = tableItems.filter((item) => item.caseno === dragItem)[0];
+    const tableDom = document.getElementById(`row-${idx.id}`);
+    tableDom.style.display = "none";
+  }
+
   const customTimes = {
     marker: moment(),
   };
@@ -178,39 +183,41 @@ function App() {
   }
 
   const T = ({ data }) => {
-
-    return (         
-
-      <table style={{ fontSize: "15px",                     
-                      width:"100%",
-                      "text-align": "left",
-                      "padding-left": "30px",
-                       border: "1pt solid #d3d3d3"
-                       }}>
+    return (
+      <table id="case-table" style={{ fontSize: "15px", width: "100%", textAlign: "left", paddingLeft: "30px", border: "1pt solid #d3d3d3" }}>
         <thead>
-        
-          <tr style={{"background-color":"#f6f6f6",
-                      height:"50px",
-                      "border": "10pt solid black"
-                      }}>
-            <td style={{width:"30%"}}> Name  &nbsp;<i class="fa fa-bars"></i> </td>
-            <td style={{width:"20%"}}> Case &nbsp; <i class="fa fa-briefcase" aria-hidden="true"></i></td>
-            <td style={{width:"20%"}}>Case Resource &nbsp; <i class="fa fa-gavel" aria-hidden="true"></i> </td>
-            <td style={{width:"10%"}}>Status &nbsp; <i class="fa fa-check-square-o" aria-hidden="true"></i> </td>
-            <td style={{width:"20%"}}>Created On &nbsp; <i class="fa fa-refresh" aria-hidden="true"></i></td>
+          <tr style={{ "background-color": "#f6f6f6", height: "50px", border: "10pt solid black" }}>
+            <td style={{ width: "30%" }}>
+              {" "}
+              Name &nbsp;<i className="fa fa-bars"></i>{" "}
+            </td>
+            <td style={{ width: "20%" }}>
+              {" "}
+              Case &nbsp; <i className="fa fa-briefcase" aria-hidden="true"></i>
+            </td>
+            <td style={{ width: "20%" }}>
+              Case Resource &nbsp; <i className="fa fa-gavel" aria-hidden="true"></i>{" "}
+            </td>
+            <td style={{ width: "10%" }}>
+              Status &nbsp; <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
+            </td>
+            <td style={{ width: "20%" }}>
+              Created On &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+            </td>
           </tr>
-      
         </thead>
-        <tbody>
+        <tbody id="case-table-body">
           {data &&
             data.map((row) => (
-              <tr onDragStart={handleDragStart} key={row.id} style={{"background-color":"#fafafa", color:"#3168d7"}}>
+              // <Draggable>
+              <tr id={`row-${row.id}`} onDragStart={(e) => handleDragStart(e)} key={row.id} style={{ "background-color": "#fafafa", color: "#3168d7" }}>
                 <td>{row.title}</td>
                 <td>{row.caseno}</td>
                 <td>{row.caseresource}</td>
                 <td>{row.status}</td>
-                <td style={{ color:"#000000"}}>{row.start}</td>
+                <td style={{ color: "#000000" }}>{row.start}</td>
               </tr>
+              // {/* </Draggable> */}
             ))}
         </tbody>
       </table>
@@ -218,51 +225,50 @@ function App() {
   };
 
   return (
- 
     <div className="App">
       <div className="timeline">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-      <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-     
-          <table style={{ fontSize: "18px",                     
-                      width:"100%",
-                      "text-align": "left",
-                      "padding-left": "30px",
-                      "padding-top":"5px",
-                      "padding-bottom":"5px",
-                       border: "1.25pt solid #dfdfdf",
-                       "vertical-align": "middle",         
-                                              }}>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-            <tr style={{"background-color":"#f6f6f6",
-                        height:"15px",
-                        "border": "10pt double black"
-                        }}>
-              <td style={{width:"15%"}}>Inital Public View :</td>
-              <td style={{width:"15%" }}><b>AKA Venue 場地</b>:</td>
-              <td style={{width:"15%"}}>GA General Affairs </td>       
-              <td style={{width:"50%"}}> </td>                   
-          </tr>  
-          </table>         
-          <table style={{ fontSize: "14px",                     
-                      width:"100%",
-                      "text-align": "left",
-                      "padding-left": "30px",                     
-                      color:"#0080FF"                    
-                                              }}>
+        <table
+          style={{
+            fontSize: "18px",
+            width: "100%",
+            "text-align": "left",
+            "padding-left": "30px",
+            "padding-top": "5px",
+            "padding-bottom": "5px",
+            border: "1.25pt solid #dfdfdf",
+            "vertical-align": "middle",
+          }}
+        >
+          <tr style={{ "background-color": "#f6f6f6", height: "15px", border: "10pt double black" }}>
+            <td style={{ width: "15%" }}>Inital Public View :</td>
+            <td style={{ width: "15%" }}>
+              <b>AKA Venue 場地</b>:
+            </td>
+            <td style={{ width: "15%" }}>GA General Affairs </td>
+            <td style={{ width: "50%" }}> </td>
+          </tr>
+        </table>
+        <table style={{ fontSize: "14px", width: "100%", "text-align": "left", "padding-left": "30px", color: "#0080FF" }}>
+          <tr style={{ "background-color": "#f6f6f6", height: "20px", border: "10pt double black" }}>
+            <td style={{ width: "5%" }}>
+              <i className="fa fa-filter"></i> Filters
+            </td>
+            <td style={{ width: "5%" }}>
+              <i className="fa fa-hourglass"></i> Hourly
+            </td>
+            <td style={{ width: "5%" }}>
+              <i className="fa fa-history"></i> Gantt
+            </td>
+            <td style={{ width: "15%" }}>
+              <i className="fa fa-calendar-check-o" aria-hidden="true"></i> 2/10/2023 - 2/16/2023
+            </td>
+            <td style={{ width: "50%" }}> </td>
+          </tr>
+        </table>
 
-            <tr style={{"background-color":"#f6f6f6",
-                        height:"20px",
-                        "border": "10pt double black"
-                        }}>
-              <td style={{width:"5%"}}><i class="fa fa-filter"></i> Filters</td>
-              <td style={{width:"5%"}}><i class="fa fa-hourglass"></i> Hourly</td>
-              <td style={{width:"5%"}}><i class="fa fa-history"></i> Gantt</td>
-              <td style={{width:"15%"}}><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 2/10/2023 - 2/16/2023</td>         
-              <td style={{width:"50%"}}>   </td>                   
-          </tr>  
-          </table>   
-      
         <Timeline doubleClickHandler={(e) => console.log(e)} selectHandler={selectHandler} options={options} items={boardItems} groups={boardGroups} customTimes={customTimes} />
       </div>
       <br />
