@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf node_modules && yarn cache clean && yarn && yarn startnpm install -force && react-scripts build",
+    "build": "rm -rf node_modules && yarn cache clean && yarn && yarn start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
