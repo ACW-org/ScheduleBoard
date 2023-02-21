@@ -223,28 +223,7 @@ function App() {
       <div className="timeline">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-      <table style={{                     
-                      width:"100%",
-                      "text-align": "center",                   
-                      border: "1pt solid #d3d3d3",
-                      color:"white"
-                                              }}>
-
-            <tr style={{"background-color":"#000000",
-                        height:"50px",
-                        "border": "10pt solid black"
-                        }}>
-        <td style={{width:"15%" ,"text-align": "left","vertical-align": "middle"  , "padding-left": "25px",}}>Demo Field Service</td>
-        <td style={{width:"85%",fontSize:"45px"}}><i>SANDBOX</i></td>
-       </tr>
-      </table>
-
-      <p style={{
-        "padding-left": "30px",
-        fontSize: "12px",
-        textAlign:"left",
-        color:"grey"     
-      }}><i class="fa fa-info" aria-hidden="true"></i> &nbsp; The old schedule board will be deprecated on April 1, 2023.</p>
+     
           <table style={{ fontSize: "18px",                     
                       width:"100%",
                       "text-align": "left",
