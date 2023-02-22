@@ -159,7 +159,7 @@ function App() {
       id: new Date().toISOString(),
       editable: true,
       type: "range",
-      content: `<b>${caseObject.caseno} - Central West 1104 </b> </br>` + `${caseName} </br>`,
+      content: `<b>${caseObject.caseno} - Central West 1104 </b> </br> ${caseName} </br>`,
       status: "open",
     };
     event.dataTransfer.setData("text", JSON.stringify(item));
