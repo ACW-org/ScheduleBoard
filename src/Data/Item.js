@@ -6,9 +6,9 @@ const fakeBoardData = [
     start: moment().add(2, "hour"),
     end: moment().add(4, "hour"),
     duration: moment().add(4, "hour").diff(moment().add(2, "hour")).toString(),   
-    content: "<a href='https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id=1140&e=T' target ='blank' ><b>CAS-220805-01070 - Central West 1104 </b></a> </br>"
-            +"Fridge Issue </br>"
-            +"2Hr",             //case
+    content: "<a href='https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id=1140&e=T' target ='blank' ><b>2023113181347001 - AIRBUS </b></a> </br>"
+            +"Broken monitor </br>"
+            +"<I>Invoice #IN0000544</I>",             //case
     group: 1,
     status: "Open",
   },
