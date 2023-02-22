@@ -161,7 +161,7 @@ function App() {
       id: new Date().toISOString(),
       editable: true,
       type: "range",
-      content: `<div class='vis-group vis-range Open'><b>${caseObject.caseno} - Central West 1104 </b> </br> ${caseName} </br> 4Hr </br>`,
+      content: `<div class='vis-group vis-range Open'><b><a href=${caseObject.url}>${caseObject.caseno} - Central West 1104</a> </b> </br> ${caseName} </br> 4Hr </br>`,
       status: "Open",
     };
     event.dataTransfer.setData("text", JSON.stringify(item));
