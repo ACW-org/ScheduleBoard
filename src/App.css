@@ -43,11 +43,15 @@
   background: transparent;
 }
 
+.vis-item-content{
+ 
+  text-align: left;
+  font-size: 12px;
+}
 
 .Open {
   background-color: rgb(255, 244, 173);
-  text-align: left;
-  font-size: 12px;
+
  
 }
 
@@ -56,14 +60,13 @@
 }
 .In-Progress {
   background-color: rgb(255, 180, 180);
-  text-align: left;
-  font-size: 12px;;
+ 
 }
 .Complete {
   background-color: rgb(142, 201, 255);
-  text-align: left;
-  font-size: 12px;
+
 }
+
 
 .vis-label {text-align: left; font-size: 14px; background-color:#fbfbfb; }
 
