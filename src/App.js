@@ -193,20 +193,20 @@ function App() {
           <tr style={{ "background-color": "#f6f6f6", height: "50px", border: "10pt solid black" }}>
             <td style={{ width: "30%" }}>
               {" "}
-              Name &nbsp;<i className="fa fa-bars"></i>{" "}
+              主旨 &nbsp;<i className="fa fa-bars"></i>{" "}
             </td>
             <td style={{ width: "20%" }}>
               {" "}
-              Case &nbsp; <i className="fa fa-briefcase" aria-hidden="true"></i>
+              編號 &nbsp; <i className="fa fa-briefcase" aria-hidden="true"></i>
             </td>
             <td style={{ width: "20%" }}>
-              Case Resource &nbsp; <i className="fa fa-gavel" aria-hidden="true"></i>{" "}
+              編號資源 &nbsp; <i className="fa fa-gavel" aria-hidden="true"></i>{" "}
             </td>
             <td style={{ width: "10%" }}>
-              Status &nbsp; <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
+              狀態 &nbsp; <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
             </td>
             <td style={{ width: "20%" }}>
-              Created On &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
+              創建日期 &nbsp; <i className="fa fa-refresh" aria-hidden="true"></i>
             </td>
           </tr>
         </thead>
@@ -258,13 +258,13 @@ function App() {
         <table style={{ fontSize: "14px", width: "100%", "text-align": "left", "padding-left": "30px", color: "#0080FF" }}>
           <tr style={{ "background-color": "#f6f6f6", height: "20px", border: "10pt double black" }}>
             <td style={{ width: "5%" }}>
-              <i className="fa fa-filter"></i> Filters
+              <i className="fa fa-filter"></i> 篩選
             </td>
             <td style={{ width: "5%" }}>
-              <i className="fa fa-hourglass"></i> Hourly
+              <i className="fa fa-hourglass"></i> 按小時檢視
             </td>
             <td style={{ width: "5%" }}>
-              <i className="fa fa-history"></i> Gantt
+              <i className="fa fa-history"></i> 縱向顯示
             </td>
             <td style={{ width: "15%" }}>
               <i className="fa fa-calendar-check-o" aria-hidden="true"></i> 2/10/2023 - 2/16/2023

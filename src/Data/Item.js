@@ -25,7 +25,7 @@ const fakeBoardData = [
   },
   {
     id: 3,
-    content: "<b>20230000072 - Central West S11 </b> </br>"
+    content: "<b>CAS-230222-01451 - Zanlan Corp. </b> </br>"
               +"維修保養 MB46VAE</br>"
               +"<I>#Low</I>",
     editable: true,
@@ -37,7 +37,7 @@ const fakeBoardData = [
 
   {
     id: 4,
-    content: "<b>20230000073 - Tuen Mun S01 </b> </br>"
+    content: "<b>CAS-230223-01851 - Guildford Water Department </b> </br>"
               +"維修保養 MB46VAE</br>"
               +"<I>#High</I>",
     editable: true,
@@ -49,7 +49,7 @@ const fakeBoardData = [
 
   {
     id: 5,
-    content: "<b>20230000074 - Central S21 </b></br>"
+    content: "<b>CAS-230223-08981 - The Device Shop</b></br>"
               +"20230222 清洗變速箱油底殼濾網 - EPS-330T</br>"
               +"<I>#Medium</I>",
     editable: true,
@@ -60,7 +60,7 @@ const fakeBoardData = [
   },
   {
     id: 6,
-    content: "<b>20230000075 - Central S21 </b></br>"
+    content: "<b>CAS-230223-05951 - Zuni Home Crafts Ltd.</b></br>"
               +"(WMDa04) 更換 HAN-71718670 </br>"
               +"<I>#Medium</I>",
     editable: true,
@@ -71,7 +71,7 @@ const fakeBoardData = [
   },
   {
     id: 7,
-    content: "<b>CAS-230805-01018 - North Point S5 </b></br>"
+    content: "<b>CAS-230805-01018 - Zuni Home Crafts Ltd. </b></br>"
               +"(WMDa04) 更換 HAN-71718670 </br>"
               +"<I>#Low</I>",
     editable: true,
