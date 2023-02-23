@@ -267,7 +267,7 @@ function App() {
               <i className="fa fa-history"></i> 縱向顯示
             </td>
             <td style={{ width: "15%" }}>
-              <i className="fa fa-calendar-check-o" aria-hidden="true"></i> 2/10/2023 - 2/16/2023
+              <i className="fa fa-calendar-check-o" aria-hidden="true"></i> 3/01/2023 - 3/07/2023
             </td>
             <td style={{ width: "50%" }}> </td>
           </tr>
