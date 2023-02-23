@@ -163,7 +163,7 @@ function App() {
       type: "range",
       content: `<div class='vis-group vis-range Open'><b><a href="${caseObject.url}" target ="blank">${caseObject.caseno} - AIRBUS </a> </b> </br> 
               ${caseName} </br>
-              <I>Invoice #IN0000565</I> </br>`,
+              <I>#Low</I> </br>`,
       status: "Open",
     };
     event.dataTransfer.setData("text", JSON.stringify(item));
