@@ -43,13 +43,17 @@
   background: transparent;
 }
 
+.vis-itemOpen {
+  background: transparent;
+  background-color: rgb(255, 244, 173); 
+}
+
 .vis-item-content{
   
   text-align: left;
   font-size: 12px;
   width: calc(100%-0px);
 }
-
 .Open {
   background-color: rgb(255, 244, 173); 
 }
