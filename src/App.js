@@ -8,7 +8,7 @@ import fakeBoardData from "./Data/Item";
 import { useEffect, useReducer, useRef, useState } from "react";
 //import CaseItem from "./Data/Case";
 <link rel="stylesheet" href="./App.css"></link>
-var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY3NTQ1OCwiZXhwIjoxNjc4Njc5MDU4LCJpYXQiOjE2Nzg2NzU0NTgsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY3NTQ1ODM3MiJ9.R902OjRd2V8FIKQhYUpZ-SsEZRzqczc-AfJ7uE5Emd-PiohGoyqP7C6ASzCAWdE4eDct2wmflZjSXtfAD_qo9fv6fqrx5djPLlqoCyeBd_iGQ83yUq2Xv2HbaU0dEUhNzf9PTotd9EjHTdB42V3_BgcFdvuwqzLIFAe7SoN2wQdpjWL02XqC4FPSRDMiHIgpK1RHiOOYFu7vaa6d-YVlazuNeIfxBOZHYOZj8hUh93dBpFNN4AXDIzI_5sKaRUKwqZRdjBiY-24-I7Leb72ZLbH2gHObbMKllYx2gWMwknVUbousmU5zvja-2PTZ24l6Wx0HhuTn9M8IkZBZ83hmpnGNX3qglCC3cCHPNKX8IRlsg4ni01-zgQZSrdvUeuA31eE6it_bI_xoLPDb_ndcVfrhB1EJrkHNlWAdBIqmSCRoCDAxpHtNx8NyARa8LDJ5J1qkpWo5RM49f-djYklwvFRVQdRZpxBFAAzoc9bBKbjB6VJttKgMQ9dGwvyXCfz9xVuHVxClrbWdNLkSF3yxeTFHd5t35BCRUr2HHTArjPcYy4rPQ7lu_4p44TF5Wz70A2D464tsnPacmTfVH8V_FaaadRRrStKrqkyNrUZ27hUruP9G47r5BTgihkC0spphVm1sKK51cOk57czDUc49FjpQv4_cJr-Yu4Nk6gNxxHQ';
+var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY3ODgwNSwiZXhwIjoxNjc4NjgyNDA1LCJpYXQiOjE2Nzg2Nzg4MDUsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY3ODgwNTY5NCJ9.kme_dB4WcO9pXfC1AlqSoYrsC4P9EZTiSCbhz47LvHbnzWhp2c9N6iuWjFGaoU23-AHuaodMKUTjBFNegWsZPKl6nrk0JC_UzEH3irFdHynSPWnp440LIrYzia-iJ7dwgFD7KHFwZx671eHvAA5CxwVh76YZaKGHI4_dRGL0BGUkNx3DZ_ooOReue7_Z0P8biXHPoZFGS7eNKTummE-OyJPCNpEnmoLQ27eBZFGXNUVG6alCWKzb6X_ynZPml8CLAlW7kd1ke2iFnvloaS38TFdKA0LlOjExjRuqL50PWqr17tOjWIoerNZJ_wdEiPqVlhITU8lpQmqTGefelVTO9fcOa1hl_Jk6ieNZ-nEG6w2bmbgwfxRgcos6sZn_ib1Nki45-RKODTfYsKEzDw2mpuvotA-FU3b_TXGZEuqXHemGZWtK9Biy1zIwYafCzZh5TzP2-NjLt8i2sh4nzVZaCmNEputX9ekLvVW3I7NuqQNH2gd7x6_tdKse-tYFFL2KO6eMhN4dSfBMb7fCmleIGpzqnv2t2_0ZtAEfj0-kHJRHehoUxLur-hQfyRuWqPZGJ7Rrvx6b-VHAlmbLm2nta3GWFSaulgYoT6ljo7k-MGibSngwSUit-9NN7yYecC4yALZTXmVBv1lhB9ZSy4n_kny0GVAOfPNdbOh9TZKF5c4';
 function App() {
   const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
@@ -174,8 +174,8 @@ function ResourcesBooking(){
    
           id: item.id,
           editable: true,
-          start:Date.parse(ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_startt)),// item.custrecord_acws_resourcesbooking_startdt,//item.custrecord_acws_resourcesbooking_startdt,//moment().add(2, "hour"),
-          end:Date.parse(ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_endt)),//item.custrecord_acws_resourcesbooking_enddt,//moment().add(4, "hour"),
+          start:ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_startt),// item.custrecord_acws_resourcesbooking_startdt,//item.custrecord_acws_resourcesbooking_startdt,//moment().add(2, "hour"),
+          end:ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_endt),//item.custrecord_acws_resourcesbooking_enddt,//moment().add(4, "hour"),
           duration: item.custrecord_acws_resourcesbooking_dur,  
           content: "<div class='vis-group vis-range prior"+item.custrecord_acws_resourcesbooking_prior+"'><a href='https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id="+item.id+"' target ='blank' ><b>CAS-230222-01149 - AIRBUS </b></a> </br>"
                   +item.title+"</br>"
@@ -193,7 +193,9 @@ function ResourcesBooking(){
 function ConvertDateTime(StartDate,StartTime)
 {
 
-  return formatDate(StartDate)+"T"+StartTime+"Z"
+  var converteddt= Date.parse(formatDate(StartDate)+"T"+StartTime+"Z");
+  converteddt= converteddt - 28800000;
+  return converteddt
 }
 
 function formatDate(date) {
