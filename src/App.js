@@ -8,7 +8,7 @@ import fakeBoardData from "./Data/Item";
 import { useEffect, useReducer, useRef, useState } from "react";
 //import CaseItem from "./Data/Case";
 <link rel="stylesheet" href="./App.css"></link>
-var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY3MTgzMiwiZXhwIjoxNjc4Njc1NDMyLCJpYXQiOjE2Nzg2NzE4MzIsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY3MTgzMjg5MSJ9.ervRbet0AE8VQjahIWuC9FFH1CRJpxAn51JYAH-Mb1X6k_UP2139SikG_z4fvTLj3-49_m_Zmge0wEMRjvXyKsuV8bEoe5xDxY05y5TirlT34D_c5YPPCvmi8gYdiWBD15dg0I_ePTXjZgZ5Iuot69ItG6L-DaEB0Mca1latfvT8mtzSy5RJj3w41hDncar2stT-EfuwkVSCnP-pbkNn98fv1WoX0If1cof2LUzaYj8sBsG79BlFt-thBXJgzWfeFasWF5ijyaNl9BdsKAoGUDmnDWP1auvWef-d06r7UUt00l1bZSK123Z6XJWvDQvM8SMxh56eHtzyVb-BAeBLZvVF__Pk64ifM39HYN1G5FOKNQ1hKNoflm5zW6Kfs5tzs3F9Ivv7RvAe9pwi6KE5gswklrENKDPC56BzBZkn-3hntBm6sonK6JOsWxQ8S4UAsAvHYhyJeXr58VCGXRKnf0H4ZSTmO5PI5_mdC9ADr3OiHEIHelWEtbIRnC38zWoWxJL9pJh6FwN0jIy1zDymu0XEFFvxIPicvJpJzbZQefFV1eGtD06I2g1GRhMDj1f2Ou17kRXZLHj46qZpZqlT4M2uN2ZVetoYGe8ajTzAT6Ki37KWQR0tAB4MCyII03NTyIwVwH47lZgMNLoAbgu_LO9jhxXC7pyyBMNYcXyNZnM';
+var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY3NTQ1OCwiZXhwIjoxNjc4Njc5MDU4LCJpYXQiOjE2Nzg2NzU0NTgsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY3NTQ1ODM3MiJ9.R902OjRd2V8FIKQhYUpZ-SsEZRzqczc-AfJ7uE5Emd-PiohGoyqP7C6ASzCAWdE4eDct2wmflZjSXtfAD_qo9fv6fqrx5djPLlqoCyeBd_iGQ83yUq2Xv2HbaU0dEUhNzf9PTotd9EjHTdB42V3_BgcFdvuwqzLIFAe7SoN2wQdpjWL02XqC4FPSRDMiHIgpK1RHiOOYFu7vaa6d-YVlazuNeIfxBOZHYOZj8hUh93dBpFNN4AXDIzI_5sKaRUKwqZRdjBiY-24-I7Leb72ZLbH2gHObbMKllYx2gWMwknVUbousmU5zvja-2PTZ24l6Wx0HhuTn9M8IkZBZ83hmpnGNX3qglCC3cCHPNKX8IRlsg4ni01-zgQZSrdvUeuA31eE6it_bI_xoLPDb_ndcVfrhB1EJrkHNlWAdBIqmSCRoCDAxpHtNx8NyARa8LDJ5J1qkpWo5RM49f-djYklwvFRVQdRZpxBFAAzoc9bBKbjB6VJttKgMQ9dGwvyXCfz9xVuHVxClrbWdNLkSF3yxeTFHd5t35BCRUr2HHTArjPcYy4rPQ7lu_4p44TF5Wz70A2D464tsnPacmTfVH8V_FaaadRRrStKrqkyNrUZ27hUruP9G47r5BTgihkC0spphVm1sKK51cOk57czDUc49FjpQv4_cJr-Yu4Nk6gNxxHQ';
 function App() {
   const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
@@ -197,6 +197,7 @@ function ConvertDateTime(StartDate,StartTime)
 }
 
 function formatDate(date) {
+
   var d = new Date(date),
       month = '' + (d.getMonth() + 1),
       day = '' + d.getDate(),
@@ -216,9 +217,9 @@ function ConvertPrior(PriorText){
   switch(PriorText){
    case '1':
     return '#Low' 
-   case '2':
-    return '#Medium' 
    case '3':
+    return '#Medium' 
+   case '2':
     return '#High'   
   }
 
