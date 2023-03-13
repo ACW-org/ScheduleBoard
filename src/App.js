@@ -252,7 +252,7 @@ function BookableResources(){
         return {
           "id": item.id,
           "img" : item.custrecord_acws_bookableresource_image,
-          "content": "<B>"+item.name+ "- "+item.custrecord_acws_bookreso_jobtitle+"</B>",
+          "content": "<a href='https://tstdrv2641016.app.netsuite.com/app/common/custom/custrecordentry.nl?rectype=451&id="+item.id+"' target ='blank' ><B>"+item.name+ "- "+item.custrecord_acws_bookreso_jobtitle+"</B></a>",
           "caseresource" :" ",
           "department": item.custrecord_acws_resourcesbooking_util+"</br>",
           "percent": 60,          
