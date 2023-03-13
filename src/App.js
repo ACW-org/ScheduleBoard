@@ -218,11 +218,11 @@ function formatDate(date) {
 function ConvertPrior(PriorText){
   switch(PriorText){
    case '1':
-    return '#Low' 
+    return '#低' 
    case '2':
-    return '#Medium' 
+    return '#中' 
    case '3':
-    return '#High'   
+    return '#高'   
   }
 
 }
