@@ -327,7 +327,7 @@ function BookableResources(){
       id: new Date().toISOString(),
       editable: true,
       type: "range",
-      content: `<div class='vis-group vis-range Open'><b><a href="${caseObject.url}" target ="blank">${caseObject.caseno} - AIRBUS </a> </b> </br> 
+      content: `<div class='vis-group vis-range prior1'><b><a href="${caseObject.url}" target ="blank">${caseObject.caseno} - AIRBUS </a> </b> </br> 
               ${caseName} </br>
               <I>#Low</I> </br>`,
       status: "Open",
