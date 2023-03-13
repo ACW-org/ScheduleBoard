@@ -177,7 +177,7 @@ function ResourcesBooking(){
           start:Date.parse(ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_startt)),// item.custrecord_acws_resourcesbooking_startdt,//item.custrecord_acws_resourcesbooking_startdt,//moment().add(2, "hour"),
           end:Date.parse(ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_endt)),//item.custrecord_acws_resourcesbooking_enddt,//moment().add(4, "hour"),
           duration: item.custrecord_acws_resourcesbooking_dur,  
-          content: "<div class='vis-group vis-range prior"+item.custrecord_acws_resourcesbooking_prior+"'><a href='https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id="+item.id+" target ='blank' ><b>CAS-230222-01149 - AIRBUS </b></a> </br>"
+          content: "<div class='vis-group vis-range prior"+item.custrecord_acws_resourcesbooking_prior+"'><a href='https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id="+item.id+"' target ='blank' ><b>CAS-230222-01149 - AIRBUS </b></a> </br>"
                   +item.title+"</br>"
                   +"<I>"+ConvertPrior(item.custrecord_acws_resourcesbooking_prior)+"</I></div>",   
           group: item.custrecord_acws_resourcesbooking_reso,
