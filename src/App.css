@@ -54,7 +54,7 @@
   width: calc(100%-0px);
 
 }
-.prior1 {
+.prior3 {
   background-color: rgb(179, 216, 153); 
   padding:0px;
 
@@ -67,7 +67,7 @@
   background-color: rgb(142, 201, 255);
   padding:0px;
 }
-.prior3 {
+.prior1 {
   background-color: rgb(255, 180, 180);
   padding:0px;
 }
