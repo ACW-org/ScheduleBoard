@@ -3,24 +3,29 @@ import Timeline from "react-visjs-timeline";
 import "./App.css";
 import moment from "moment";
 // import { options } from "./Components/Options";
-import tlGroups from "./Data/Group";
+//import tlGroups from "./Data/Group";
 import fakeBoardData from "./Data/Item";
 import { useEffect, useReducer, useRef, useState } from "react";
-import CaseItem from "./Data/Case";
-
+//import CaseItem from "./Data/Case";
+<link rel="stylesheet" href="./App.css"></link>
+var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODYzNTU1MSwiZXhwIjoxNjc4NjM5MTUxLCJpYXQiOjE2Nzg2MzU1NTEsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODYzNTU1MTQxMSJ9.bMuF2o9u2lq31wfc1ck-HHfDLy_Yhw06Dq-Gh83ePztRX5HmYfMl8pL0XWG9wTeYF1CVDXdnwhT6G0hfFz4IayBrpAPwPWWSkHlZaqQCCYPXsnEBKYE64zR4yORRGzksk6DKOT7NXrnsP8FKXHNjGltQtF3P-FOVuSpfUlBpcaz6Lww1o7IuxPP9OaTegox3rMDcAEcBXymVOYTU0DhtM9LKDDuTRGmhlMNQh-rR1zZd9DwlZDKw-vcWeBdzMx-n1a0DbpeFrcrY3Cp4g9PJoxDszOa4zpj17_fsZE8C_V0500n_8dY6uXdjZvGQBAV0o5qOCdj3TtEf5QeFqGRoaSR_OT0XPGEEiYQgK6YclZmlU365H9GuSs1D7p6r4KTVO5eUGMw5zg-QKxe8eQeUddXf0SJHF7TkqZs_T4NlfewLo9OQwsgq74rQpkt94mx6LlXGfUb_MJIUVaoB3QJcPaN8pe8Pjw3x1_2rvSyyIcAV9vUgSqzV9FH6B6Hu40bSKdGzJv_hB9iwz2jeNX5ZIE2kdJcljdlKO7_mtOg-NqoE8hfYPkAHvsE1N14eUTxS-TlcLmmonBmnqwIktPW0d8fYdLyUkE-3kA_e0qP249lrvGO2eZg2W1YfyxEohwWn0lbh4bv8Z3IKFdm8RAnXlk0XEsn3_SsjE6ceNA_5RiQ';
 function App() {
   const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
+ // const [boardData, setBoardData] = useState([]);
   const [dragItem, setDragItem] = useState("");
   const [drag, setDrag] = useState(0);
   const [dragging, setDragging] = useState(false);
 
-  // const [optionSetup, setOptionSetup] = useState(options);
+  // const [optionSetup, setOptionSetup] = useState(options); 
   const [tableItems, setTableItems] = useState(CaseItem);
   const status = ["Open", "Accept", "In-Progress", "Cancelled", "Complete"];
+
+
   const getData = () => {
-    setBoardGroups(tlGroups);
-    // setBoardItems(fakeBoardData);
+    ResourcesBooking();
+    BookableResources();    
+    CaseItem();
   };
   const convert = () => {
     const items = [];
@@ -43,9 +48,10 @@ function App() {
   useEffect(() => {
     getData();
     convert();
+    
   }, []);
 
-  const getStartDate = () => {
+const getStartDate = () => {
     let startArr = [];
     fakeBoardData.forEach((item) => {
       startArr.push(item.start);
@@ -60,6 +66,7 @@ function App() {
     });
     return Math.max(...startArr);
   };
+  
   const GroupTemplate = (group) => {
     return (
       <div>
@@ -93,9 +100,9 @@ function App() {
       var container = document.createElement("div");
 
       var elem = document.createElement("img");
-      //elem.setAttribute("src", "http://localhost:3000/" + group.img);
-      elem.setAttribute("src", " https://yellow-cliff-03240a500.2.azurestaticapps.net/" + group.img);
-     
+      elem.setAttribute("src", "http://localhost:3000/" + group.img);
+      //elem.setAttribute("src", " https://yellow-cliff-03240a500.2.azurestaticapps.net/" + group.img);
+
       elem.setAttribute("height", "30");
       elem.setAttribute("width", "30");
       elem.setAttribute("style", "border-radius:50%");
@@ -143,6 +150,162 @@ function App() {
   //   event.dataTransfer.setData("text", JSON.stringify(item));
   //   // event.originalEvent.dataTransfer.files("text", JSON.stringify(item));
   // }
+
+function ResourcesBooking(){
+  let request = new Request('https://shiny-poetry-28e5.simonlkch.workers.dev/?https://tstdrv2641016.suitetalk.api.netsuite.com/services/rest/query/v1/suiteql', {
+    method: 'POST',
+    body: JSON.stringify({ 'q': 'select * from customrecord_acws_resourcesbooking CASR,SupportCase SC where SC.id = CASR.custrecord_acws_resourcesbooking_case' }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Prefer': 'transient',
+      'Authorization': 'Bearer '+AuthToken
+    })
+  });
+
+  fetch(request)
+    .then((response) => response.text())
+    .then((responsetext) => {
+    
+        console.log(JSON.parse(responsetext).items)
+
+
+      var ResourcesBooking = JSON.parse(responsetext).items.map((item) => {
+        return {
+   
+          id: item.id,
+          editable: true,
+          start:Date.parse(ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_startt)),// item.custrecord_acws_resourcesbooking_startdt,//item.custrecord_acws_resourcesbooking_startdt,//moment().add(2, "hour"),
+          end:Date.parse(ConvertDateTime(item.custrecord_acws_resourcesbooking_startdt,item.custrecord_acws_resourcesbooking_endt)),//item.custrecord_acws_resourcesbooking_enddt,//moment().add(4, "hour"),
+          duration: item.custrecord_acws_resourcesbooking_dur,  
+          content: "<div class='vis-group vis-range prior"+item.custrecord_acws_resourcesbooking_prior+"'><a href='https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id=1161&whence=' target ='blank' ><b>CAS-230222-01149 - AIRBUS </b></a> </br>"
+                  +item.title+"</br>"
+                  +"<I>"+ConvertPrior(item.custrecord_acws_resourcesbooking_prior)+"</I></div>",   
+          group: item.custrecord_acws_resourcesbooking_reso,
+          status: "Open",          //case
+        }
+      }
+      )         
+      setBoardItems(ResourcesBooking)      
+    })
+  
+ 
+}
+function ConvertDateTime(StartDate,StartTime)
+{
+
+  return formatDate(StartDate)+"T"+StartTime+"Z"
+}
+
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
+
+
+function ConvertPrior(PriorText){
+  switch(PriorText){
+   case '1':
+    return '#Low' 
+   case '2':
+    return '#Medium' 
+   case '3':
+    return '#High'   
+  }
+
+}
+
+
+function BookableResources(){
+
+
+  let request = new Request('https://shiny-poetry-28e5.simonlkch.workers.dev/?https://tstdrv2641016.suitetalk.api.netsuite.com/services/rest/query/v1/suiteql', {
+    method: 'POST',
+    body: JSON.stringify({ 'q': 'select * from customrecord_acws_bookableresources' }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Prefer': 'transient',
+      'Authorization': 'Bearer '+ AuthToken
+    })
+  });
+
+  fetch(request)
+    .then((response) => response.text())
+    .then((responsetext) => {
+    
+        console.log(JSON.parse(responsetext).items)
+
+
+      var Group = JSON.parse(responsetext).items.map((item) => {
+        return {
+          "id": item.id,
+          "img" : item.custrecord_acws_bookableresource_image,
+          "content": "<B>"+item.name+ "- 高級工程師</B>",
+          "caseresource" :" ",
+          "department": "(2小時 佔用  -  5%)  </br>",
+          "percent": 60,          
+        }
+      }
+      )         
+      setBoardGroups(Group)      
+    })
+  }
+
+
+  function CaseItem() {  
+
+    let request = new Request('https://shiny-poetry-28e5.simonlkch.workers.dev/?https://tstdrv2641016.suitetalk.api.netsuite.com/services/rest/query/v1/suiteql', {
+      method: 'POST',
+      body: JSON.stringify({ 'q': 'select * from SupportCase' }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Prefer': 'transient',
+        'Authorization': 'Bearer '+ AuthToken
+      })
+    });
+
+    fetch(request)
+      .then((response) => response.text())
+      .then((responsetext) => {
+      
+          console.log(JSON.parse(responsetext).items)
+
+
+        var SupportCase = JSON.parse(responsetext).items.map((item) => {
+          return {
+            "id": item.id,
+            "title" : item.title,
+            "caseno": item.casenumber,
+            "caseresource" :"Resource - Unnamed Resource",
+            "start": moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"),
+            "duration": 60, 
+            "status": "Active", 
+            "url": "https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?"+item.id 
+          }
+        }
+        )
+        // console.log("abcAAA",abcAAA)
+
+        // var test = [
+        //   { id: 4, title: abcAAA, caseno: "CAS-230222-01148", caseresource: "Resource - Unnamed Resource", start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"), duration: 60, status: "Active", url: "https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?id=1162" },
+        //   { id: 5, title: "20230212 (WMDa04) 更換 HAN-71710670", caseno: "CAS-220805-01088", caseresource: "Resource - Unnamed Resource", start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"), duration: 60, status: "Active", url: "" },
+        //   { id: 6, title: "20230205 更換 HAN-71710670", caseno: "CAS-220805-01090", caseresource: "Resource - Unnamed Resource", start: moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"), duration: 60, status: "Active", url: "" },
+        //   { id: 7, title: "20230130 (WMDa04) 更換 HAN-71718670", caseno: "CAS-220805-01074", caseresource: "Resource - Unnamed Resource", start: "30/01/2023 10:58:36", duration: 60, status: "Active", url: "" },
+        // ];
+
+        setTableItems(SupportCase)      
+      })
+
+    }
 
   function handleRemove(item, callback) {
     console.log("triggered delete", item);

@@ -4,6 +4,8 @@
   text-align: center;
 }
 
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -43,29 +45,27 @@
   background: transparent;
 }
 
-.vis-itemOpen {
-  background: transparent;
-  background-color: rgb(255, 244, 173); 
-}
+
 
 .vis-item-content{
   
   text-align: left;
   font-size: 12px;
   width: calc(100%-0px);
+
 }
-.Open {
+.prior1 {
   background-color: rgb(255, 244, 173); 
 }
 
 .Accept {
   background-color: rgb(233, 211, 73);
 }
-.In-Progress {
+.prior2 {
   background-color: rgb(255, 180, 180);
  
 }
-.Complete {
+.prior3 {
   background-color: rgb(142, 201, 255);
 
 }
