@@ -190,6 +190,8 @@ function ResourcesBooking(){
   
  
 }
+
+
 function ConvertDateTime(StartDate,StartTime)
 {
 
@@ -223,6 +225,24 @@ function ConvertPrior(PriorText){
     return '#中' 
    case '1':
     return '#高'   
+  }
+
+}
+
+
+
+function ConvertStatus(StatusText){
+  switch(StatusText){
+   case '1':
+    return '未開始' 
+   case '2':
+    return '進行中' 
+   case '3':
+    return '已升級'   
+  case '4':
+    return '重新開啟'   
+  case '5':
+    return '已完結'   
   }
 
 }
@@ -291,7 +311,7 @@ function BookableResources(){
             "caseresource" :"Resource - Unnamed Resource",
             "start": item.created,
             "duration": 60, 
-            "status": "Active", 
+            "status": ConvertStatus(item.status),
             "url": "https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?"+item.id 
           }
         }
