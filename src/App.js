@@ -8,7 +8,7 @@ import fakeBoardData from "./Data/Item";
 import { useEffect, useReducer, useRef, useState } from "react";
 //import CaseItem from "./Data/Case";
 <link rel="stylesheet" href="./App.css"></link>
-var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3RsZXRzIiwicmVzdF93ZWJzZXJ2aWNlcyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY5MjY1OSwiZXhwIjoxNjc4Njk2MjU5LCJpYXQiOjE2Nzg2OTI2NTksImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY5MjY1OTEzMCJ9.LU_XH7vYz4KcA-5-uDs9glitwfoCyMVCKyoGFedkmvLFcLwobkIbCtHHYgQhhMbS75WHNeJG6t6-cYJACPtJILCLLuFMAuXsZoICFYSjNoWzx2xez7SPf8sXGJTP-v-YPnJbNY6iJXRWbyE2PvgSlNixfUyMYZzAqRCfQOFDOuUEVvDiSenCPMBWNRaWNhLEz1rblcpt2ZH872a1wq1VXbnsCqisYyAlyX_h_ey3tWHsTUsFdjUREbEc3TSum-45Nf_hSenHjzDMMpMA2OwizabBfqL1J6FrWKROsgydBvqo6pjsd6JVGtSmUP_vgH1pblXCCQYUxn_3NlyUuY05KtIQfUlcipXYiGED4DeuyhM5Q2t3zUkeGCEDDRGdf1vXsDax0wzzFYjOZ_-pxR6p0BwAqZEWPX56UXNRsGZcPuRBBOeJWATzvlPjiMGjXnsMwl9R3zsKoWeq0oMSsOG3PSloN34ltas6o835y6HRNAWrVPMGQJMhQRAPeQAiRDITyeq1qVdsIJXPRCBJtE3YAvFbyr-mSuwvUA_qxzf8EetP109V-DXl738S_OlwPJX2q_8dARLVrnxCxpddvYLR4sLATnrJEzHE5nCe86C7Uk-qNMUlaPZTV_ipKhLvGtL1n3UxmRDMjjGdDXxCZmN4HgjgvxNPz3z2uZ-BqCZ-QAE';
+var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY5NTIzNSwiZXhwIjoxNjc4Njk4ODM1LCJpYXQiOjE2Nzg2OTUyMzUsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY5NTIzNTE3MSJ9.YmoYevnFG-b7X_4DRZIbb0DIXTMpKUThy3rx85dNH90edYKwNbc-KmydNt95ySDIQAmquBUjXwKz723BtrMFR7eFzFDjpZw-KkbEuByvcvHfBsmjw-AgzWlyw5rd5VB5OQwRU2IHzvBi9ha8ixou1fOJw44yTOUdaZpmzpCUFWC6ooVXAc41Bha_luJrTaMBVPeKlRMx-eMBEGQQNqBvUVObKU0oApfW3dc4QxIDafcYprVF3CVrHRzUdEZgrF7ZFiG4VwKgcSWOy-fsQT6VcnW9Vg8QDAr39Vxt4eQ327aO2x5g26yslIk4McTMwY6l7PZv2c3NG0FZ0ZcMryGEH6UKC3tXaKeSE5D401w-GiT8WApuLnSjynkaYdCKTRL_sMjk2nOL-QNB1XzqP8q2iMxZQbbUoxBZMwLkvi_OOKjOu_n8ZuZONYFEO0CF9FiaugXB8MzyVK-B6kXDUvutayh01ZUpUVVXo0ZCdIqpoOMjsEmhqBN879CwpzKPYvwtRO2tRyDUElbRfE3wqfi5JEtkZRSmNw_g8ycaH8GN8g0_qLVIQl4-wmIVlfY9EvAZu1lEIGbLvDnkkYclS7rM_ADl1Snh7FNMNbhTTA2LAGvgrHhK3dO1wP2j0f4c2hdkSzyWSEnUjmDcossCxof37pJG6gNpmlxp3fdrP3H1vSc';
 function App() {
   const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
@@ -309,7 +309,7 @@ function BookableResources(){
             "title" : item.title,
             "caseno": item.casenumber,
             "caseresource" :"Resource - Unnamed Resource",
-            "start": moment(),
+            "start": item.startdate+" 13:30",
             "duration": 60, 
             "status":"未開始",
             "url": "https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?"+item.id 
