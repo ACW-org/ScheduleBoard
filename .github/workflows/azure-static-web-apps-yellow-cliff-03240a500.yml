@@ -44,7 +44,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks, you static web app url is : ${{builddeploy.outputs.static_web_app_url}}'
+              body: '👋 Thanks, you static web app url is : ${{ builddeploy.outputs.static_web_app_url }}'
             })
 
 
