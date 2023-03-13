@@ -252,9 +252,9 @@ function BookableResources(){
         return {
           "id": item.id,
           "img" : item.custrecord_acws_bookableresource_image,
-          "content": "<B>"+item.name+ "- 高級工程師</B>",
+          "content": "<B>"+item.name+ "- "+item.custrecord_acws_bookreso_jobtitle+"</B>",
           "caseresource" :" ",
-          "department": "(2小時 佔用  -  5%)  </br>",
+          "department": item.custrecord_acws_resourcesbooking_util+"</br>",
           "percent": 60,          
         }
       }
