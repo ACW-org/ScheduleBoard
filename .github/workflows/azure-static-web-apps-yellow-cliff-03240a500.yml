@@ -32,19 +32,17 @@ jobs:
           output_location: "build" # Built app content directory - optional
           build_timeout_in_minutes: 60
           ###### End of Repository/Build Configurations ######
-
-  # some comment on PR
-  comment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v6
+          
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks, you static web app url is : ${{ builddeploy.outputs.static_web_app_url }}'
+              body: '👋 Thanks, your static web app url is: ${{ steps.builddeploy.outputs.static_web_app_url }}'
             })
 
 
