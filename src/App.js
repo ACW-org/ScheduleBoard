@@ -219,9 +219,9 @@ function ConvertPrior(PriorText){
   switch(PriorText){
    case '1':
     return '#Low' 
-   case '3':
-    return '#Medium' 
    case '2':
+    return '#Medium' 
+   case '3':
     return '#High'   
   }
 
@@ -433,7 +433,7 @@ function BookableResources(){
               <i className="fa fa-history"></i> 縱向顯示
             </td>
             <td style={{ width: "15%" }}>
-              <i className="fa fa-calendar-check-o" aria-hidden="true"></i> 2/1/2023 - 2/28/2023
+              <i className="fa fa-calendar-check-o" aria-hidden="true"></i> 3/13/2023 - 3/19/2023
             </td>
             <td style={{ width: "50%" }}> </td>
           </tr>

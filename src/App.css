@@ -1,7 +1,7 @@
 
 
 .App {
-  text-align: center;
+/*  text-align: center;*/
 }
 
 
@@ -56,19 +56,22 @@
 }
 .prior1 {
   background-color: rgb(255, 244, 173); 
+  padding:0px;
+
 }
 
 .Accept {
   background-color: rgb(233, 211, 73);
 }
 .prior2 {
-  background-color: rgb(255, 180, 180);
- 
+  background-color: rgb(142, 201, 255);
+  padding:0px;
 }
 .prior3 {
-  background-color: rgb(142, 201, 255);
-
+  background-color: rgb(255, 180, 180);
+  padding:0px;
 }
+
 
 
 
