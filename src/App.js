@@ -8,7 +8,7 @@ import fakeBoardData from "./Data/Item";
 import { useEffect, useReducer, useRef, useState } from "react";
 //import CaseItem from "./Data/Case";
 <link rel="stylesheet" href="./App.css"></link>
-var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY5NTIzNSwiZXhwIjoxNjc4Njk4ODM1LCJpYXQiOjE2Nzg2OTUyMzUsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY5NTIzNTE3MSJ9.YmoYevnFG-b7X_4DRZIbb0DIXTMpKUThy3rx85dNH90edYKwNbc-KmydNt95ySDIQAmquBUjXwKz723BtrMFR7eFzFDjpZw-KkbEuByvcvHfBsmjw-AgzWlyw5rd5VB5OQwRU2IHzvBi9ha8ixou1fOJw44yTOUdaZpmzpCUFWC6ooVXAc41Bha_luJrTaMBVPeKlRMx-eMBEGQQNqBvUVObKU0oApfW3dc4QxIDafcYprVF3CVrHRzUdEZgrF7ZFiG4VwKgcSWOy-fsQT6VcnW9Vg8QDAr39Vxt4eQ327aO2x5g26yslIk4McTMwY6l7PZv2c3NG0FZ0ZcMryGEH6UKC3tXaKeSE5D401w-GiT8WApuLnSjynkaYdCKTRL_sMjk2nOL-QNB1XzqP8q2iMxZQbbUoxBZMwLkvi_OOKjOu_n8ZuZONYFEO0CF9FiaugXB8MzyVK-B6kXDUvutayh01ZUpUVVXo0ZCdIqpoOMjsEmhqBN879CwpzKPYvwtRO2tRyDUElbRfE3wqfi5JEtkZRSmNw_g8ycaH8GN8g0_qLVIQl4-wmIVlfY9EvAZu1lEIGbLvDnkkYclS7rM_ADl1Snh7FNMNbhTTA2LAGvgrHhK3dO1wP2j0f4c2hdkSzyWSEnUjmDcossCxof37pJG6gNpmlxp3fdrP3H1vSc';
+var AuthToken = 'eyJraWQiOiJjLlRTVERSVjI2NDEwMTYuMjAyMy0wMS0zMV8wMC0xMC01OCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzOzMxMTAiLCJhdWQiOlsiMkE3QTBDQTMtNzkwNi00MzFCLTg3QTctN0Y1MkE1NkNGRjlEO1RTVERSVjI2NDEwMTYiLCJhMDUzODRhNTcxY2EwMjFkNjM2ZWU2YmIzZjZiMWM1OTdmYjRjYjIwZGY4YWQzMWExNmIyNWMxYzI5NmFhNTAyIl0sInNjb3BlIjpbInJlc3Rfd2Vic2VydmljZXMiLCJyZXN0bGV0cyJdLCJpc3MiOiJodHRwczpcL1wvc3lzdGVtLm5ldHN1aXRlLmNvbSIsIm9pdCI6MTY3ODY5Njg1MCwiZXhwIjoxNjc4NzAwNDUwLCJpYXQiOjE2Nzg2OTY4NTAsImp0aSI6IlRTVERSVjI2NDEwMTYuYS1jLm51bGwuMTY3ODY5Njg1MDg2MyJ9.LJu7gWv8r2jfjDvxhpgiCM06o-8SnpKzmW7Q63CCSzFNeZ4rFEyxVWrTUjd3fgiAPhgb_HXNJY8GcK2bu_2-eVmFb7UEkWE6Gs1Lu73IjPJPOFodF1boba0Cd4X2OdMhBv6ZJnzHp16VqDe9e-dzq1TGSSgD9D7llxSie-dwhz1KoK11HSf9RWOng2zRBka-t9yk0a8uKus6XgDmUttJP97Q7sn4lwugWc65GOxTnG4IvU_J_FJ7eqg6YbdBLu1WvotfH5pNaxxdUDYEENMMQJz-VEAF6OgtyVtISdLMOF-JKR-YGoSOUYeSVADqCd-3r0JgEV5GSeBid_B17Z3d0d4viCqSCY6f8ErlwpPUWbVnL3rFGsaLPRYnkiW-fjXDi1sLaR6MoSTwpTR9SWgozTILaLxkVe6NZRUwrqWiL9cz4UvzQ7nHMQvANFWPYBVjVSYSgEnS-7OluJnDqjFxqSFCkKrw6llLuEWtEQpBYDWHE78V8ChEibGgKj_4vduhbGztypVokXOyNFcUlkfKcVesAOXhnOx7D-FDVOmbvYaZDr3vmLBI8ld-zl4mutPgpHYp7iE3EhFXI1O1QDF8xPJHZngVtcNHSihZextZm3Ko2njMuAPUC_jxx6QveidGDYSmGY__BcJibOc9hITXfRmdCPxEU9hMyHweEU5ychU';
 function App() {
   const [boardItems, setBoardItems] = useState([]);
   const [boardGroups, setBoardGroups] = useState([]);
@@ -347,9 +347,9 @@ function BookableResources(){
       id: new Date().toISOString(),
       editable: true,
       type: "range",
-      content: `<div class='vis-group vis-range prior1'><b><a href="${caseObject.url}" target ="blank">${caseObject.caseno} - AIRBUS </a> </b> </br> 
+      content: `<div class='vis-group vis-range prior3'><b><a href="${caseObject.url}" target ="blank">${caseObject.caseno} - AIRBUS </a> </b> </br> 
               ${caseName} </br>
-              <I>#Low</I> </br>`,
+              <I>#低</I> </br>`,
       status: "Open",
     };
     event.dataTransfer.setData("text", JSON.stringify(item));
