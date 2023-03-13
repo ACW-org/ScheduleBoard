@@ -289,7 +289,7 @@ function BookableResources(){
             "title" : item.title,
             "caseno": item.casenumber,
             "caseresource" :"Resource - Unnamed Resource",
-            "start": moment().add(2, "hour").format("DD/MM/yyyy hh:mm:ss"),
+            "start": item.created,
             "duration": 60, 
             "status": "Active", 
             "url": "https://tstdrv2641016.app.netsuite.com/app/crm/support/supportcase.nl?"+item.id 
