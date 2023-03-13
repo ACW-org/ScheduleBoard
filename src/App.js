@@ -100,8 +100,8 @@ const getStartDate = () => {
       var container = document.createElement("div");
 
       var elem = document.createElement("img");
-      elem.setAttribute("src", "http://localhost:3000/" + group.img);
-      //elem.setAttribute("src", " https://yellow-cliff-03240a500.2.azurestaticapps.net/" + group.img);
+     // elem.setAttribute("src", "http://localhost:3000/" + group.img);
+      elem.setAttribute("src", " https://yellow-cliff-03240a500.2.azurestaticapps.net/" + group.img);
 
       elem.setAttribute("height", "30");
       elem.setAttribute("width", "30");
